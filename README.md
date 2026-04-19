@@ -1,6 +1,7 @@
 # FIRM Tool — Febrile Infant Rural Model
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://firm-tool.streamlit.app)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19650146.svg)](https://doi.org/10.5281/zenodo.19650146)
 
 An interactive clinical decision support tool for febrile infants aged 0-89 days, designed for emergency departments without access to procalcitonin or a complete laboratory panel.
 
@@ -85,5 +86,5 @@ MIT License. See [LICENSE](LICENSE).
 ```
 Farquhar H. The FIRM Tool (Febrile Infant Rural Model): bivariate
 meta-analysis of published decision rules with individual-level prediction
-modelling. [Preprint]. 2026.
+modelling. [Preprint]. 2026. Tool: https://doi.org/10.5281/zenodo.19650146
 ```
