@@ -31,6 +31,14 @@ pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
+**Run tests:**
+
+```bash
+python -m pytest tests/ -v
+```
+
+51 tests covering the prediction model (tiers, missing inputs, edge cases, coefficient integrity) and 5 published decision rule implementations.
+
 ## Model
 
 The prediction model is a logistic regression with 7 predictors:
