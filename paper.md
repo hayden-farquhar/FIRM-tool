@@ -33,6 +33,14 @@ The FIRM Tool addresses this gap by providing a continuous probability estimate 
 
 No existing tool fills this niche. Published decision rules produce binary outputs (low-risk or not) and require complete input panels. The FIRM Tool is the first to provide a continuous, context-rich probability estimate designed specifically for incomplete-data scenarios in resource-limited settings.
 
+# State of the field
+
+Several clinical calculators exist for paediatric risk stratification, including MDCalc implementations of the Rochester criteria, Step-by-Step algorithm, and PECARN rule. These are web-based calculators that reproduce the binary classification of the original rules: they require all specified inputs and produce a categorical low-risk/not-low-risk output. When any input is unavailable, the calculator cannot be used.
+
+The AAP 2021 guideline [@pantell2021] provides age-stratified management algorithms but does not offer a quantitative risk estimate. The FIDO study decision aid comparison [@umana2024] evaluated multiple rules head-to-head but did not produce a software tool for clinical use.
+
+The FIRM Tool differs from these approaches in three ways: (1) it produces a continuous probability rather than a binary classification; (2) it handles missing inputs through median imputation rather than exclusion, explicitly quantifying how each missing input affects the risk estimate; and (3) it provides a comparative view across five published decision rules, showing which rules can be applied with the available inputs and what each would recommend.
+
 # Software design
 
 The FIRM Tool is implemented as a Streamlit web application in Python. The prediction model is a logistic regression with seven predictors (age, temperature, white blood cell count, absolute neutrophil count, urinalysis result, Yale Observation Scale score, and a neonatal age indicator), derived from the PECARN Biosignatures public-use dataset (n=4,434; 88 IBI events) [@kuppermann2019]. Model coefficients are embedded directly in the source code, eliminating external dependencies on data files or serialised model objects. This design choice ensures full reproducibility and portability: the tool can be deployed on any platform that supports Python and Streamlit.
@@ -47,11 +55,11 @@ The application architecture consists of three components:
 
 The tool is deployed on Streamlit Community Cloud for zero-installation browser access and is also runnable locally via `streamlit run streamlit_app.py`.
 
-# Research context
+# Research impact statement
 
-The derivation study and internal validation of the FIRM model are reported in a separate manuscript [@farquhar2026preprint], currently under peer review at *Archives of Disease in Childhood* (MS# archdischild-2026-330835). The derivation study combines a bivariate HSROC meta-analysis of seven published febrile infant decision rules with individual-level prediction modelling. The model achieved an optimism-corrected AUC of 0.780 (bootstrap 95% CI 0.705--0.853) and calibration slope of 0.937. At the 1.5% probability threshold, 66% of infants were classified into actionable risk tiers with an observed IBI rate of 0.68% in the combined very-low and low-risk groups. The full analysis code is archived separately [@farquhar2026code].
+The derivation study and internal validation of the FIRM model are reported in a companion manuscript [@farquhar2026preprint], currently under peer review at *Archives of Disease in Childhood* (MS# archdischild-2026-330835). The model achieved an optimism-corrected AUC of 0.780 (bootstrap 95% CI 0.705--0.853) and calibration slope of 0.937. At the 1.5% probability threshold, 66% of infants were classified into actionable risk tiers with an observed IBI rate of 0.68% in the combined very-low and low-risk groups. The analysis code is archived separately [@farquhar2026code]. The tool is deployed at https://firm-tool.streamlit.app and has been available since April 2026.
 
-The FIRM Tool has not been externally validated. A three-phase validation programme is proposed: retrospective external validation on an Australian cohort, prospective silent-mode deployment in rural emergency departments, and a clinical impact study. We invite the PREDICT network and other paediatric emergency research groups to undertake prospective validation.
+The FIRM Tool has not been externally validated. A three-phase validation programme is proposed, and we invite the PREDICT network and other paediatric emergency research groups to undertake prospective validation using the openly available model coefficients and code.
 
 # AI usage disclosure
 
